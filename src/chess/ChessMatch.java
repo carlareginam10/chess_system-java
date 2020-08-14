@@ -3,6 +3,9 @@ package chess;
 import java.util.Iterator;
 
 import bordergame.Board;
+import bordergame.Position;
+import chess.pieces.King;
+import chess.pieces.Rook;
 
 public class ChessMatch {
 	//regras do jogo 
@@ -10,6 +13,7 @@ public class ChessMatch {
 
 	public ChessMatch() {		
 		board = new Board(8,8);
+		initialSetup();
 	}
 	
 	
@@ -29,6 +33,9 @@ public class ChessMatch {
 		return mat;
 	}
 	
-	
+	private void initialSetup() {
+		board.placePiece(new Rook (board, Color.BLACK), new Position(2,1));
+		board.placePiece(new King (board, Color.WHITE), new Position(0,4));
+	}
 
 }
