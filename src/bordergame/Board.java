@@ -3,7 +3,7 @@ package bordergame;
 public class Board {
 	private int rows;
 	private int columns;
-	private Piace[][] piaces;
+	private Piece[][] pieces;
 	
 	
 	// o construtor só vai receber quantidade de linhas e colunas
@@ -12,7 +12,7 @@ public class Board {
 		this.rows = rows;
 		this.columns = columns;
 		//Piace será estanciado qua a quantidade de linhas e colunas informado
-		piaces = new Piace[rows][columns];
+		pieces = new Piece[rows][columns];
 	}
 
 
@@ -35,7 +35,13 @@ public class Board {
 		this.columns = columns;
 	} 
 	
+	public Piece piece(int rows, int columns) {
+		return pieces[rows][columns];
+	}
 	
+	public Piece piece(Position position) {
+		return pieces[position.getRow()][position.getColumn()];
+	}
 	
 
 }
