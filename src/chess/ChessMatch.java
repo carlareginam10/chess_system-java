@@ -3,6 +3,7 @@ package chess;
 import java.util.Iterator;
 
 import bordergame.Board;
+import bordergame.Piece;
 import bordergame.Position;
 import chess.pieces.King;
 import chess.pieces.Rook;
@@ -32,6 +33,31 @@ public class ChessMatch {
 		}
 		return mat;
 	}
+	
+	public ChessPiece performChessMove(ChessPosition sourcePosition, ChessPosition targetPosition) {
+		Position source = sourcePosition.toPosition();
+		Position target = targetPosition.toPosition();
+		validadeSourcePosition(source);
+		Piece capturedPiece = makeMove(source,target);
+		return (ChessPiece)capturedPiece;
+	}
+	
+	private Piece makeMove(Position source ,Position target) {
+		Piece p = board.removePiece(source);
+		Piece capturePiece = board.removePiece(target);
+		board.placePiece(p, target);
+		return capturePiece;
+		
+	}
+	
+	private void validadeSourcePosition(Position position) {
+		if (!board.thereIsAPiece(position)) {
+			throw new ChessException ("Theres no piece on source position");
+			
+		}
+		
+	}
+	
 	
 	private void placeNewPiece(char column, int row, ChessPiece piece) {
 		board.placePiece(piece, new ChessPosition(column, row).toPosition());
